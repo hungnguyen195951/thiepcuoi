@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ngọc Như & Khánh Hưng - Wedding Invitation</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- CẤU HÌNH MÀU SẮC --- */
+        :root {
+            --primary: #8a2323;     /* Đỏ đô */
+            --gold: #b48b50;        /* Vàng đồng */
+            --cream: #fff9f0;       /* Kem nhạt */
+            --text: #333;
+            
+            --font-head: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --font-script: 'Pinyon Script', cursive;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: var(--font-body); 
+            color: var(--text); 
+            overflow-x: hidden;
+            background-color: var(--cream);
+            background-image: url('img/bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* --- CLASS HỖ TRỢ LÀM NÉT ẢNH --- */
+        .sharp-img {
+            image-rendering: -webkit-optimize-contrast; 
+            transform: translateZ(0); 
+            backface-visibility: hidden; 
+            -webkit-backface-visibility: hidden;
+        }
+
+        /* --- 1. MÀN HÌNH CHỜ (INTRO) --- */
+        #opening-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #8f2626 0%, #3d0505 100%);
+            z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 20px; overflow: hidden;
+        }
+        
+        #opening-overlay::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/black-scales.png');
+            opacity: 0.2; pointer-events: none; z-index: 0;
+        }
+
+        /* --- HIỆU ỨNG ĐOM ĐÓM (FIREFLIES) --- */
+        .firefly {
+            position: absolute; width: 4px; height: 4px; background-color: #ffd700;
+            border-radius: 50%; box-shadow: 0 0 10px #ffd700, 0 0 20px #ffae00;
+            opacity: 0; animation: fly 6s infinite ease-in-out; z-index: 1;
+        }
+        @keyframes fly {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+        .firefly:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+        .firefly:nth-child(2) { left: 20%; animation-duration: 10s; animation-delay: 2s; }
+        .firefly:nth-child(3) { left: 35%; animation-duration: 7s; animation-delay: 4s; }
+        .firefly:nth-child(4) { left: 50%; animation-duration: 11s; animation-delay: 1s; }
+        .firefly:nth-child(5) { left: 65%; animation-duration: 9s; animation-delay: 3s; }
+        .firefly:nth-child(6) { left: 80%; animation-duration: 12s; animation-delay: 5s; }
+        .firefly:nth-child(7) { left: 90%; animation-duration: 6s; animation-delay: 2s; }
+        .firefly:nth-child(8) { left: 15%; animation-duration: 9s; animation-delay: 6s; }
+        .firefly:nth-child(9) { left: 75%; animation-duration: 8s; animation-delay: 1s; }
+
+        .intro-content-wrapper {
+            position: relative; z-index: 5;
+            display: flex; flex-direction: column; align-items: center;
+            width: 100%; max-width: 900px; 
+            margin: 0 auto; padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.25); 
+            border: 1px solid rgba(255, 215, 0, 0.3); 
+            border-radius: 20px;
+            backdrop-filter: blur(4px); 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        
+        .intro-names {
+            font-family: var(--font-script); font-size: 5rem; color: white;
+            text-shadow: 0 0 15px rgba(180, 139, 80, 0.8);
+            margin-bottom: 30px; text-align: center; line-height: 1.2;
+            animation: fadeInDown 1.5s ease-out; pointer-events: none;
+            white-space: nowrap; 
+        }
+        .intro-names span { color: var(--gold); font-size: 3.5rem; margin: 0 20px; vertical-align: middle; }
+
+        .envelope-wrapper { 
+            position: relative; width: 300px; max-width: 90%; margin-bottom: 40px; 
+            pointer-events: none; z-index: 2;
+            animation: floating 3s ease-in-out infinite;
+            filter: drop-shadow(0 25px 35px rgba(0,0,0,0.5));
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .env-img { width: 100%; display: block; border-radius: 4px; }
+        .env-open { display: none; }
+
+        .gold-heart-btn {
+            position: relative; width: 80px; height: 80px;
+            background: linear-gradient(135deg, #f5df98, #d4af37, #b48b50);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            animation: pulse-gold-strong 2s infinite;
+            z-index: 10; cursor: pointer; transition: transform 0.3s;
+        }
+        .gold-heart-btn:active { transform: scale(0.95); }
+        .gold-heart-btn i { color: var(--primary); font-size: 2rem; }
+        
+        @keyframes pulse-gold-strong { 
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); transform: scale(1); } 
+            70% { box-shadow: 0 0 0 25px rgba(0,0,0,0); transform: scale(1.1); } 
+            100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); transform: scale(1); } 
+        }
+
+        .click-hint { 
+            color: rgba(255,255,255,0.9); font-size: 0.95rem; letter-spacing: 4px; 
+            font-weight: 700; text-transform: uppercase; margin-top: 25px;
+            animation: fadeInUp 1.5s ease-out; pointer-events: none; z-index: 2;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        .is-open #opening-overlay { transform: translateY(-100%); }
+        
+        .intro-deco { position: absolute; pointer-events: none; width: 160px; opacity: 0.12; filter: brightness(0) invert(1); z-index: 1; }
+        .id-tl { top: -20px; left: -20px; transform: rotate(-10deg); }
+        .id-tr { top: -20px; right: -20px; transform: scaleX(-1) rotate(-10deg); }
+        .id-bl { bottom: -20px; left: -20px; transform: scaleY(-1) rotate(-10deg); }
+        .id-br { bottom: -20px; right: -20px; transform: scale(-1) rotate(-10deg); }
+
+        /* --- 2. LAYOUT CHÍNH (CONTENT) --- */
+        .deco-fixed { position: fixed; z-index: 2; pointer-events: none; width: 180px; max-width: 30%; opacity: 1; }
+        .deco-top-left { top: -30px; left: -30px; transform: rotate(-10deg); }
+        .deco-top-right { top: -30px; right: -30px; transform: scaleX(-1) rotate(-10deg); }
+        .deco-bottom-left { bottom: -30px; left: -30px; transform: scaleY(-1) rotate(-10deg); }
+        .deco-bottom-right { bottom: -30px; right: -30px; transform: scale(-1) rotate(-10deg); }
+
+        .container {
+            max-width: 700px; margin: 40px auto;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative; border-radius: 10px; overflow: hidden;
+            z-index: 10; border: 1px solid #f0e6d8;
+        }
+        .section { padding: 60px 30px; text-align: center; border-bottom: 1px dashed #e0e0e0; }
+
+        /* HEADER THIỆP */
+        .std-card { background: #fff; padding-bottom: 40px; }
+        .std-ornament { color: #D4C4A8; margin-bottom: 10px; opacity: 0.8; }
+        .std-names {
+            font-family: var(--font-head); color: var(--primary);
+            font-size: 3.5rem; line-height: 1.1; font-weight: 700; margin: 5px 0;
+        }
+        .std-ampersand { font-size: 2.5rem; font-style: italic; color: var(--primary); margin: 5px 0; display: block; }
+        .std-subtitle { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px; color: #8C8C8C; margin: 20px 0 30px; font-weight: 600; }
+        
+        .std-photo-frame {
+            position: relative; width: 80%; margin: 0 auto 30px;
+            aspect-ratio: 4/5; border: 6px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); overflow: hidden;
+            transform: translateZ(0);
+        }
+        .std-photo-frame img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            image-rendering: -webkit-optimize-contrast;
+        }
+        
+        .date-big { font-family: var(--font-head); font-size: 3rem; font-weight: 700; color: var(--primary); margin: 10px 0; }
+        .day-label, .time-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #666; }
+
+        /* FONTS & COMMON */
+        .heading-font { font-family: var(--font-head); font-size: 3rem; color: var(--primary); margin-bottom: 15px; font-weight: 700; }
+        .sub-title { font-family: var(--font-script); color: var(--gold); font-size: 3rem; margin-bottom: 5px; }
+
+        /* TIMELINE (LOVE STORY) */
+        .timeline { position: relative; padding: 20px 0; }
+        .timeline-item { 
+            position: relative; margin-bottom: 40px; padding-left: 25px; 
+            border-left: 2px solid var(--primary); text-align: left; 
+            margin-left: 15%; margin-right: 5%;
+        }
+        .timeline-item::before { 
+            content: '❤'; position: absolute; left: -11px; top: 0; 
+            background: #fff; color: var(--primary); width: 20px; height: 20px; 
+            text-align: center; line-height: 20px; font-size: 12px; 
+            border: 1px solid var(--primary); border-radius: 50%; 
+        }
+        .t-date { font-weight: bold; color: var(--gold); font-size: 1.1rem; }
+        .t-title { font-weight: bold; color: var(--primary); font-family: var(--font-head); font-size: 1.4rem; }
+
+        /* LỊCH TRÌNH */
+        .schedule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        .schedule-item { background: #fafafa; padding: 20px; border-radius: 8px; border: 1px solid #eee; }
+        .schedule-icon i { font-size: 1.5rem; color: var(--gold); margin-bottom: 10px; }
+        .schedule-time { font-weight: bold; color: var(--primary); font-size: 1.2rem; margin-bottom: 5px; }
+
+        /* ALBUM SCRAPBOOK */
+        .scrapbook-section { 
+            padding: 80px 0; 
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); 
+            overflow: hidden; 
+        }
+        .scrapbook-container { position: relative; height: 600px; width: 100%; }
+        .sb-text { position: absolute; color: var(--gold); line-height: 0.9; z-index: 4; text-shadow: 2px 2px 0px rgba(255,255,255,0.8); }
+        .sb-text .script-font { font-family: var(--font-script); font-size: 5.5rem; font-weight: 400; }
+        .sb-text .serif-font { font-family: var(--font-head); font-size: 3rem; font-weight: 700; letter-spacing: 2px; color: #b48b50; }
+        
+        .sb-photo { 
+            position: absolute; background: #fff; padding: 10px 10px 40px 10px; 
+            box-shadow: 10px 15px 30px rgba(0,0,0,0.2); 
+            transition: transform 0.3s; border: 1px solid #eee; 
+            will-change: transform; -webkit-font-smoothing: antialiased;
+        }
+        
+        .sb-photo img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            filter: sepia(10%) contrast(105%); 
+            image-rendering: -webkit-optimize-contrast; 
+            transform: translateZ(0); backface-visibility: hidden;
+        }
+        
+        .sb-text-top { top: 20px; left: 10%; transform: rotate(-5deg); }
+        .sb-photo-right { top: 50px; right: 5%; width: 50%; height: 350px; transform: rotate(4deg); z-index: 2; }
+        .sb-photo-left { top: 250px; left: 8%; width: 45%; height: 300px; transform: rotate(-5deg); z-index: 3; }
+        .sb-text-bottom { bottom: 50px; right: 12%; text-align: right; transform: rotate(-3deg); }
+
+        /* --- SLIDESHOW GALLERY --- */
+        .gallery-slideshow-wrapper {
+            max-width: 600px; margin: 0 auto; position: relative;
+        }
+        .gallery-main-view {
+            position: relative; width: 100%;
+            aspect-ratio: 2/3; 
+            background: #eee; border-radius: 4px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 15px; border: 4px solid #fff;
+            transform: translateZ(0); 
+        }
+        .gallery-main-view img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: opacity 0.4s ease-in-out;
+            image-rendering: -webkit-optimize-contrast;
+        }
+        
+        .slider-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.3); color: #fff;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; z-index: 10; font-size: 1.2rem; transition: all 0.3s;
+        }
+        .slider-nav:hover { background: rgba(255,255,255,0.8); color: var(--primary); }
+        .nav-prev { left: 10px; }
+        .nav-next { right: 10px; }
+
+        .gallery-thumbnails {
+            display: flex; justify-content: center; gap: 10px;
+            overflow-x: auto; padding: 5px;
+        }
+        .thumb-item {
+            width: 60px; height: 60px;
+            border-radius: 4px; overflow: hidden;
+            opacity: 0.5; cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s; flex-shrink: 0;
+        }
+        .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
+        .thumb-item.active {
+            opacity: 1; border-color: var(--primary);
+            transform: scale(1.1); box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* RSVP FORM */
+        .rsvp-section { background: var(--primary); color: white; padding: 60px 20px; }
+        .form-control { width: 100%; padding: 15px; margin-bottom: 15px; border: none; border-radius: 5px; font-family: var(--font-body); }
+        .submit-btn { 
+            width: 100%; padding: 15px; background: #fff; color: var(--primary); 
+            border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; 
+            letter-spacing: 1px; border-radius: 5px; margin-top: 10px;
+        }
+        
+        /* COUNTDOWN & UTILS */
+        .timer-box { display: inline-block; margin: 5px; padding: 10px; background: var(--primary); color: #fff; border-radius: 5px; min-width: 60px; }
+        .timer-num { font-size: 1.3rem; font-weight: 700; display: block; }
+        .timer-label { font-size: 0.7rem; }
+        
+        .gift-container { margin: 30px auto; cursor: pointer; display: inline-block; position: relative; }
+        .gift-icon { width: 160px; animation: float-gift 3s infinite ease-in-out; }
+        @keyframes float-gift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .gift-label { background: var(--primary); color: #fff; padding: 10px 30px; border-radius: 20px; margin-top: -25px; position: relative; display: inline-block; font-weight: bold; }
+
+        /* MODAL & MUSIC */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; display: none; justify-content: center; align-items: center; }
+        .qr-modal { background: #fff; width: 90%; max-width: 380px; padding: 30px 20px; border-radius: 15px; text-align: center; position: relative; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 2rem; cursor: pointer; color: #999; }
+        .music-btn { position: fixed; bottom: 20px; left: 20px; width: 45px; height: 45px; background: #fff; color: var(--primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 100; border: 2px solid var(--primary); cursor: pointer; }
+        .music-btn.playing { animation: spin 4s linear infinite; }
+        @keyframes spin { 100% {transform: rotate(360deg);} }
+        #canvas-sakura { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container { width: 100%; max-width: 100%; margin: 0; border: none; border-radius: 0; box-shadow: none; }
+            .section { padding: 50px 20px; }
+            .intro-names { font-size: 4rem; margin-bottom: 20px; white-space: normal; }
+            .intro-names span { font-size: 2.8rem; display: block; margin: 10px 0; }
+            .intro-content-wrapper { max-width: 90%; } 
+            .envelope-wrapper { width: 220px; margin-bottom: 30px; }
+            .gold-heart-btn { width: 70px; height: 70px; }
+            .gold-heart-btn i { font-size: 1.8rem; }
+            .std-names { font-size: 2.8rem; }
+            .std-ampersand { font-size: 2rem; }
+            .std-photo-frame { width: 90%; margin-bottom: 20px; }
+            .date-big { font-size: 2.5rem; }
+            .timeline-item { margin-left: 10px; margin-right: 0; padding-left: 20px; }
+            .schedule-grid { grid-template-columns: 1fr; gap: 15px; }
+            .scrapbook-container { height: auto; display: flex; flex-direction: column; align-items: center; gap: 30px; padding-bottom: 40px; }
+            .sb-text, .sb-photo { position: static; width: 90%; transform: none !important; margin: 0 auto; text-align: center; }
+            .sb-text-top { order: 1; margin-bottom: 0; }
+            .sb-text-bottom { order: 4; margin-top: 10px; text-align: center; }
+            .sb-text .script-font { font-size: 4rem; line-height: 1; }
+            .sb-text .serif-font { font-size: 2.2rem; }
+            .sb-photo-right { order: 2; height: auto; aspect-ratio: 4/3; transform: rotate(2deg) !important; z-index: 2; margin-bottom: -20px; }
+            .sb-photo-left { order: 3; height: auto; aspect-ratio: 4/3; transform: rotate(-2deg) !important; z-index: 3; }
+            .deco-fixed { width: 100px; opacity: 0.6; }
+            .qr-modal { width: 85%; }
+            .gallery-main-view { aspect-ratio: 3/4; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas-sakura"></canvas>
+    <audio id="bg-music" loop><source src="audio/Lễ Đường.mp3" type="audio/mpeg"></audio>
+    <div class="music-btn" id="music-btn" onclick="toggleMusic()"><i class="fas fa-music"></i></div>
+
+    <img src="https://w.ladicdn.com/s800x800/649340684a3700001217851c/hoa-tang-20250825073356-yyt-h.png" class="deco-fixed deco-top-left">
+    <img src="https://w.ladicdn.com/s800x800/649340684a3700001217851c/hoa-tang-20250825073356-yyt-h.png" class="deco-fixed deco-top-right">
+    <img src="https://w.ladicdn.com/s800x800/649340684a3700001217851c/hoa-tang-20250825073356-yyt-h.png" class="deco-fixed deco-bottom-left">
+    <img src="https://w.ladicdn.com/s800x800/649340684a3700001217851c/hoa-tang-20250825073356-yyt-h.png" class="deco-fixed deco-bottom-right">
+
+    <div id="opening-overlay" onclick="openInvitation()">
+        <div class="firefly"></div><div class="firefly"></div><div class="firefly"></div>
+        <div class="firefly"></div><div class="firefly"></div><div class="firefly"></div>
+        <div class="firefly"></div><div class="firefly"></div><div class="firefly"></div>
+
+        <img src="https://w.ladicdn.com/s800x800/649340684a3700001217851c/hoa-tang-20250825073356-yyt-h.png" class="intro-deco id-tl">
+        <img src="https://w.ladicdn.com/s800x800/649340684a3700001217851c/hoa-tang-20250825073356-yyt-h.png" class="intro-deco id-tr">
+        <img src="https://w.ladicdn.com/s800x800/649340684a3700001217851c/hoa-tang-20250825073356-yyt-h.png" class="intro-deco id-bl">
+        <img src="https://w.ladicdn.com/s800x800/649340684a3700001217851c/hoa-tang-20250825073356-yyt-h.png" class="intro-deco id-br">
+
+        <div class="intro-content-wrapper">
+            <h1 class="intro-names">Ngọc Như <span>&</span> Khánh Hưng</h1>
+            <div class="envelope-wrapper">
+                <img src="img/AT7I3656.jpg" class="env-img env-closed sharp-img" alt="Closed">
+                <img src="https://w.ladicdn.com/s800x800/649340684a3700001217851c/phong-bi-mo-20250527045312--nmhl.png" class="env-img env-open" alt="Open">
+            </div>
+            <div class="gold-heart-btn"><i class="fas fa-heart"></i></div>
+            <p class="click-hint">CHẠM ĐỂ MỞ THIỆP</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="section std-card">
+            <div class="std-ornament" data-aos="fade-down"><i class="fas fa-crown"></i></div>
+            <div data-aos="fade-up">
+                <h1 class="std-names">Ngọc Như</h1>
+                <span class="std-ampersand">&</span>
+                <h1 class="std-names">Khánh Hưng</h1>
+            </div>
+            <div class="std-subtitle" data-aos="fade-up">Save The Date</div>
+            <div class="std-photo-frame" data-aos="zoom-in" data-aos-duration="1200">
+                <img src="img/AT7I4795.jpg" alt="Wedding Photo" class="sharp-img">
+            </div>
+            <div class="std-footer" data-aos="fade-up">
+                <div class="day-label">Chủ Nhật</div>
+                <div class="date-big">18 . 01 . 2026</div>
+                <div class="time-label">10:00 Sáng</div>
+                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 0.95rem;">Tại Nhà hàng Diệp Lan<br>Dĩ An – Bình Dương</p>
+            </div>
+            <div id="countdown" style="margin-top: 30px; padding-top: 20px; border-top: 1px dashed #eee;">
+                <div class="timer-box"><span class="timer-num" id="d">00</span><span class="timer-label">NGÀY</span></div>
+                <div class="timer-box"><span class="timer-num" id="h">00</span><span class="timer-label">GIỜ</span></div>
+                <div class="timer-box"><span class="timer-num" id="m">00</span><span class="timer-label">PHÚT</span></div>
+                <div class="timer-box"><span class="timer-num" id="s">00</span><span class="timer-label">GIÂY</span></div>
+            </div>
+        </header>
+
+        <section class="section" style="background: #fafafa;">
+            <p class="sub-title">Love Story</p>
+            <h2 class="heading-font">Hành Trình Tình Yêu</h2>
+            <div class="timeline" data-aos="fade-up">
+                <div class="timeline-item"><div class="t-date">2024</div><div class="t-title">Gặp gỡ</div><p>Lần đầu tiên ánh mắt chạm nhau, thế giới như ngừng lại.</p></div>
+                <div class="timeline-item"><div class="t-date">2026</div><div class="t-title">Hẹn hò</div><p>Chúng ta chính thức là một đôi, cùng nhau đi qua bao thăng trầm.</p></div>
+                <div class="timeline-item"><div class="t-date">2026</div><div class="t-title">Về chung nhà</div><p>Một chương mới mở ra, hạnh phúc trọn vẹn.</p></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="heading-font">Lịch Trình</h2>
+            <div class="schedule-grid" data-aos="zoom-in">
+                <div class="schedule-item"><div class="schedule-icon"><i class="fas fa-glass-cheers"></i></div><div class="schedule-time">10:00</div><div>Đón Khách</div></div>
+                <div class="schedule-item"><div class="schedule-icon"><i class="fas fa-ring"></i></div><div class="schedule-time">10:30</div><div>Làm Lễ</div></div>
+                <div class="schedule-item"><div class="schedule-icon"><i class="fas fa-utensils"></i></div><div class="schedule-time">11:00</div><div>Khai Tiệc</div></div>
+                <div class="schedule-item"><div class="schedule-icon"><i class="fas fa-camera"></i></div><div class="schedule-time">12:00</div><div>Chụp Ảnh</div></div>
+            </div>
+        </section>
+
+        <section class="section" style="background: #fffaf4;">
+            <h2 class="heading-font">Dress Code</h2>
+            <p style="margin-bottom: 20px;">Trang phục phù hợp: Trắng, Be, Vàng Đồng</p>
+            <div style="display:flex; justify-content:center; gap:15px;">
+                <div style="width:40px; height:40px; background:#fff; border:1px solid #ddd; border-radius:50%;"></div>
+                <div style="width:40px; height:40px; background:#f5f5dc; border:1px solid #ddd; border-radius:50%;"></div>
+                <div style="width:40px; height:40px; background:#d4af37; border:1px solid #ddd; border-radius:50%;"></div>
+            </div>
+        </section>
+
+        <section class="section scrapbook-section">
+            <div class="scrapbook-container">
+                <div class="sb-text sb-text-top" data-aos="fade-right"><span class="script-font">The</span><br><span class="serif-font">ALBUM</span></div>
+                <div class="sb-photo sb-photo-right" data-aos="zoom-in-left"><img src="img/AT7I3850.jpg" alt="Wedding Photo 1"></div>
+                <div class="sb-photo sb-photo-left" data-aos="zoom-in-right" data-aos-delay="200"><img src="img/AT7I4651.jpg" alt="Wedding Photo 2"></div>
+                <div class="sb-text sb-text-bottom" data-aos="fade-up"><span class="serif-font">OF</span><br><span class="serif-font">LOVE</span></div>
+            </div>
+        </section>
+
+        <section class="section" style="background: #fafafa;">
+            <p class="sub-title" data-aos="fade-up">Sweet Moments</p>
+            <h2 class="heading-font" data-aos="fade-up">Khoảnh Khắc Ngọt Ngào</h2>
+            
+            <div class="gallery-slideshow-wrapper" data-aos="zoom-in">
+                <div class="gallery-main-view">
+                    <div class="slider-nav nav-prev" onclick="changeSlide(-1)">&#10094;</div>
+                    <div class="slider-nav nav-next" onclick="changeSlide(1)">&#10095;</div>
+                    <img id="main-gallery-img" src="" alt="Sweet Moment" class="sharp-img">
+                </div>
+                <div class="gallery-thumbnails" id="thumbnail-container"></div>
+            </div>
+        </section>
+
+        <section class="rsvp-section">
+            <div style="position:relative; z-index:2;" data-aos="fade-up">
+                <h2 class="heading-font" style="color:white; margin-bottom:10px;">Gửi Lời Chúc</h2>
+                <p style="margin-bottom:30px; opacity:0.9;">Sự hiện diện của bạn là niềm vinh hạnh lớn nhất.</p>
+                <form onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã gửi lời chúc!');">
+                    <input type="text" placeholder="Tên của bạn là?" class="form-control" required>
+                    <textarea rows="3" placeholder="Lời chúc đến cô dâu chú rể..." class="form-control"></textarea>
+                    <div style="text-align:left; margin-bottom:15px;">
+                        <label style="display:block; margin-bottom:10px; cursor:pointer;"><input type="radio" name="attend" checked> <span style="margin-left:8px;">Mình sẽ tham dự</span></label>
+                        <label style="display:block; cursor:pointer;"><input type="radio" name="attend"> <span style="margin-left:8px;">Tiếc quá, mình bận rồi</span></label>
+                    </div>
+                    <button class="submit-btn">Gửi Xác Nhận</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="gift-container" onclick="openModal()">
+                <img src="img/giftbox.png" alt="Gift Box" class="gift-icon"> 
+                <br><span class="gift-label">Gửi Mừng Cưới</span>
+            </div>
+        </section>
+
+        <footer style="background:#333; color:#aaa; padding:30px; font-size:0.9rem;">
+            Ngoc Nhu & Khanh Hung<br>18.01.2026
+        </footer>
+    </div>
+
+    <div class="modal-overlay" id="qrModal">
+        <div class="qr-modal">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 class="heading-font" style="font-size:2rem; margin-bottom:10px;">Mừng Cưới</h2>
+            <img src="img/qr.png" alt="QR Code" class="qr-img" style="width:200px; margin-bottom:15px;">
+            <p style="font-weight:bold; margin-bottom:5px;">BIDV</p>
+            <p style="color:#555;">NGUYEN KHANH HUNG</p>
+            <p style="font-size:1.4rem; color:var(--primary); font-weight:700; margin:10px 0;">64210000574355</p>
+            <button class="submit-btn" style="background:var(--primary); color:#fff; width:auto; padding:10px 30px;" onclick="copySTK()">Copy STK</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        
+        function openInvitation() {
+            document.querySelector('.env-closed').style.display = 'none';
+            document.querySelector('.env-open').style.display = 'block';
+            setTimeout(() => {
+                document.body.classList.add('is-open');
+                const audio = document.getElementById('bg-music');
+                audio.play().catch(e => console.log("Auto-play blocked"));
+                document.getElementById('music-btn').classList.add('playing');
+            }, 800);
+        }
+
+        function toggleMusic() { 
+            const a = document.getElementById('bg-music'); 
+            const b = document.getElementById('music-btn'); 
+            if(a.paused){ a.play(); b.classList.add('playing'); }
+            else{ a.pause(); b.classList.remove('playing'); } 
+        }
+        
+        function openModal() { document.getElementById('qrModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('qrModal').style.display = 'none'; }
+        function copySTK() { navigator.clipboard.writeText("64210000574355"); alert("Đã copy số tài khoản!"); }
+
+        /* Countdown */
+        const weddingDate = new Date('2026-01-18T10:00:00').getTime();
+        setInterval(() => { 
+            const now = new Date().getTime(); const gap = weddingDate - now; 
+            if(gap < 0) return; 
+            document.getElementById('d').innerText = Math.floor(gap / (1000 * 60 * 60 * 24)); 
+            document.getElementById('h').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); 
+            document.getElementById('m').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60)); 
+            document.getElementById('s').innerText = Math.floor((gap % (1000 * 60)) / 1000); 
+        }, 1000);
+
+        /* --- LOGIC SLIDESHOW (ĐÃ CẬP NHẬT AUTO-PLAY) --- */
+        const galleryImages = [
+            'img/AT7I3669.jpg',
+            'img/AT7I5135.jpg',
+            'img/AT7I5107.jpg',
+            'img/AT7I4651.jpg',
+            'img/AT7I3850.jpg' 
+        ];
+
+        let currentIndex = 0;
+        const mainImg = document.getElementById('main-gallery-img');
+        const thumbContainer = document.getElementById('thumbnail-container');
+        let autoPlayTimer; // Biến lưu timer
+
+        function initGallery() {
+            if(galleryImages.length > 0) mainImg.src = galleryImages[0];
+            galleryImages.forEach((src, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = `thumb-item ${index === 0 ? 'active' : ''}`;
+                thumb.innerHTML = `<img src="${src}" onclick="setSlide(${index})">`;
+                thumbContainer.appendChild(thumb);
+            });
+            // Bắt đầu chạy tự động ngay khi tải xong
+            startAutoPlay();
+        }
+
+        // Hàm khởi động/reset timer tự động
+        function startAutoPlay() {
+            clearInterval(autoPlayTimer); // Xóa timer cũ nếu có
+            autoPlayTimer = setInterval(() => {
+                changeSlide(1, false); // Tham số false: đây là tự động chạy, không phải người bấm
+            }, 3500); // 3.5 giây đổi ảnh 1 lần
+        }
+
+        function changeSlide(direction, manual = true) {
+            // Nếu người dùng bấm tay (manual = true) thì reset lại timer để không bị trôi ảnh
+            if (manual) startAutoPlay(); 
+
+            currentIndex += direction;
+            if (currentIndex >= galleryImages.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+            updateGallery();
+        }
+
+        function setSlide(index) {
+            // Người dùng bấm vào thumbnail -> reset timer
+            startAutoPlay();
+            currentIndex = index;
+            updateGallery();
+        }
+
+        function updateGallery() {
+            mainImg.style.opacity = 0; 
+            setTimeout(() => {
+                mainImg.src = galleryImages[currentIndex];
+                mainImg.style.opacity = 1;
+            }, 200);
+            const thumbs = document.querySelectorAll('.thumb-item');
+            thumbs.forEach((t, i) => {
+                if (i === currentIndex) t.classList.add('active');
+                else t.classList.remove('active');
+            });
+        }
+        initGallery();
+
+        /* Sakura Effect */
+        const canvas = document.getElementById("canvas-sakura"); 
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight; 
+        let petals = [];
+        for (let i=0; i<25; i++) petals.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*3+2, d: Math.random()*1+0.5, c: Math.random()<0.5?"#ffc0cb":"#ffd1dc"});
+        function draw() { 
+            ctx.clearRect(0,0,canvas.width,canvas.height); 
+            petals.forEach(p => { 
+                ctx.fillStyle = p.c; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill(); 
+                p.y+=p.d; p.x+=Math.sin(p.y*0.02); 
+                if(p.y>canvas.height) { p.y=-10; p.x=Math.random()*canvas.width; } 
+            }); 
+            requestAnimationFrame(draw); 
+        } 
+        draw(); 
+        window.onresize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+    </script>
+</body>
+</html>
